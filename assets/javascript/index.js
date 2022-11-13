@@ -6,7 +6,7 @@ function loadQuestions() {
     //Only Works in Local Computer
     //fetch('http://127.0.0.1:5500/assets/data/data.json').then((response) => response.json()).then((json) => console.log(json));
     //Works in Github Pages
-    fetch('https://rbarbosa51.github.io/Javascript-Code-Quiz//assets/data/data.json').then((response) => response.json()).then((json) => console.log(json));
+    fetch('https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json').then((response) => response.json()).then((json) => console.log(json));
 }
 
 function showQuestions() {
