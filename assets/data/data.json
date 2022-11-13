@@ -1,4 +1,4 @@
-var data = 
+
     [
         {
             "id": 0,
@@ -26,5 +26,5 @@ var data =
             "B": "3 - This is the B Answer",
             "C": "3 - This is the C Answer",
             "D": "3 - This is the D Answer"
-        },
+        }
 ]
