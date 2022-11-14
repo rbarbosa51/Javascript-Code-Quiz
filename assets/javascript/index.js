@@ -54,7 +54,9 @@ function loadQuestions(currentQuestionID) {
         QC.innerText = json[currentQuestionID].C;
         QD.innerText = json[currentQuestionID].D;
         currentQuestionAnswer = json[currentQuestionID].CorrectAnswer;
-    }).catch();
+    }).catch((e) => {
+        console.log(`This is the error: ${e}`);
+    });
 }
 
 function showQuestions() {
@@ -111,7 +113,16 @@ buttonAnswer.addEventListener('click',  (e) => {
     if (inputAnswer === currentQuestionAnswer) {
         feedback.innerText = 'Correct !!!';
     } else {
-        feedback.innerText = 'Incorrect !!!';
+        feedback.innerText = `Incorrect - Punished ${timePunishment} seconds!`;
+        var currentTime = currentTimer.dataset.time;
+        if (currentTime >= timePunishment) {
+            currentTime = currentTime - timePunishment;
+            setTime(currentTime);
+            updateTime();
+        } else {
+            setTime(0);
+            updateTime()
+        }
     }
     //Load the next question if there are any questions left
     //I need to add 1 to compensate for the fact that I have to add 1. 
