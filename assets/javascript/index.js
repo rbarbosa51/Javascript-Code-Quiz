@@ -5,6 +5,7 @@ var initialTime = 100;
 //Value to punish
 var timePunishment = 5;
 //scoreIncreate
+var correctScoreIncrease = 3;
 
 //Timer Interval
 var timerInterval;
@@ -12,6 +13,7 @@ var timerInterval;
 var currentQuestionAnswer;
 //Answer Feedback
 var feedback = document.getElementById('feedback');
+var score = document.getElementById('score');
 //For the timer
 var currentTimer = document.getElementById('timer');
 //For the quiz 
@@ -109,9 +111,11 @@ buttonAnswer.addEventListener('click',  (e) => {
     //Check if correct answer if not punish
     var inputAnswer = getUserInputAnswer();
     console.log(`user Input: ${inputAnswer} and the question correct answer is ${currentQuestionAnswer}`);
-    
+    //currentPlayerScore    correctScoreIncrease 
     if (inputAnswer === currentQuestionAnswer) {
         feedback.innerText = 'Correct !!!';
+        currentPlayerScore += correctScoreIncrease;
+        score.innerText = `Current Score is: ${currentPlayerScore}`;
     } else {
         feedback.innerText = `Incorrect - Punished ${timePunishment} seconds!`;
         var currentTime = currentTimer.dataset.time;
@@ -141,6 +145,7 @@ buttonAnswer.addEventListener('click',  (e) => {
         clearInterval(timerInterval);
         feedback.innerText = '';
         currentPlayerScore = 0;
+        score.innerText = `Current Score is: ${currentPlayerScore}`;
     }
     
     
