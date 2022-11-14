@@ -1,4 +1,6 @@
-
+//For the timer
+var currentTimer = document.getElementById('timer');
+//For the quiz 
 var buttonAnswer = document.getElementById('buttonSubmit');
 var buttonStart = document.getElementById('buttonStart');
 var questionID = document.getElementById('questionID');
@@ -8,6 +10,7 @@ var QB = document.getElementById('QB');
 var QC = document.getElementById('QC');
 var QD = document.getElementById('QD');
 
+
 //This simplifies my life, so I can change between debugging on GitHub Pages and localhost. I just uncomment what I need
 //var url = 'http://127.0.0.1:5500/assets/data/data.json';
 var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
@@ -16,7 +19,7 @@ var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.js
 var currentQuestionID = 0;
 var data = 5;
 function loadQuestions(currentQuestionID) {
-    //Only Works in Local Computer
+    //Only Works in Local Computer (Live Server) or Github Pages
     fetch(url)
     .then((response) => response.json())
     .then((json) => {
@@ -48,4 +51,12 @@ buttonStart.addEventListener('click', () => {
 buttonAnswer.addEventListener('click',  (e) => {
     e.preventDefault();
     console.log('Button Clicked');
+});
+
+function setTime() {
+    var time = currentTimer.dataset.time;
+    currentTimer.innerText = time;
+}
+window.addEventListener('load', () => {
+    setTime();
 });
