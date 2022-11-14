@@ -16,7 +16,6 @@ function updateTime() {
 }
 function setTime(newTime) {
     currentTimer.dataset.time = newTime;
-    currentTimer.innerText = currentTimer.dataset.time;
 }
 
 //This simplifies my life, so I can change between debugging on GitHub Pages and localhost. I just uncomment what I need
@@ -48,7 +47,17 @@ function showQuestions() {
 }
 
 function startTimer() {
-
+    setInterval(() => {
+        var currentTime = currentTimer.dataset.time;
+        if (currentTime > 0) {
+            setTime(currentTime - 1);
+            updateTime();
+        } 
+        else {
+            clearInterval();
+        }
+    }, 1000);
+    
 }
 
 //This button starts the game
@@ -59,7 +68,7 @@ buttonStart.addEventListener('click', () => {
     //Goes and gets the json file with the current question
     loadQuestions(currentQuestionID);
     //Starts the timer
-    
+    startTimer();
 
 });
 
@@ -67,7 +76,7 @@ buttonStart.addEventListener('click', () => {
 buttonAnswer.addEventListener('click',  (e) => {
     e.preventDefault();
     console.log('Button Clicked');
-    setTime(5);
+    //setTime(5);
     
 });
 
