@@ -36,8 +36,8 @@ function setTime(newTime) {
 }
 
 //This simplifies my life, so I can change between debugging on GitHub Pages and localhost. I just uncomment what I need
-var url = 'http://127.0.0.1:5500/assets/data/data.json';
-//var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
+//var url = 'http://127.0.0.1:5500/assets/data/data.json';
+var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
 
 //Global Variable pointing to the current question
 var currentQuestionID = 0;
@@ -98,11 +98,14 @@ buttonStart.addEventListener('click', () => {
 });
 function getUserInputAnswer() {
     var radioSelect = document.querySelectorAll('input[name="radioSelect"]');
+    var answer;
     for (const radio of radioSelect) {
         if (radio.checked) {
-            return radio.value;
+            answer = radio.value;
+            radio.checked = false;
         }
     }
+    return answer;
 }
 
 //
