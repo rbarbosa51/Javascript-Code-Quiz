@@ -1,3 +1,5 @@
+//Initial Time
+var initialTime = 100;
 //For the timer
 var currentTimer = document.getElementById('timer');
 //For the quiz 
@@ -27,13 +29,11 @@ var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.js
 var currentQuestionID = 0;
 
 function loadQuestions(currentQuestionID) {
-    console.log('loadQuestions');
     //Only Works in Local Computer (Live Server) or Github Pages
     fetch(url)
     .then((response) => response.json())
     .then((json) => {
         console.log(json);
-        console.log(json.length);
         quizLength = json.length;
         questionID.innerText = (json[currentQuestionID].id + 1);
         questionText.innerText = json[currentQuestionID].Question;
@@ -74,17 +74,25 @@ buttonStart.addEventListener('click', () => {
     startTimer();
 
 });
-
+function getUserInputAnswer() {
+    var radioSelect = document.querySelectorAll('input[name="radioSelect"]');
+    for (const radio of radioSelect) {
+        if (radio.checked) {
+            return radio.value;
+        }
+    }
+}
 //
 buttonAnswer.addEventListener('click',  (e) => {
     e.preventDefault();
-    console.log('Button Clicked');
     //Check if correct answer if not punish
-    
+    var inputAnswer = getUserInputAnswer();
+    console.log(`user Input: ${inputAnswer}`);
     //Load the next question if there are any questions left
     //I need to add 1 to compensate for the fact that I have to add 1. 
-    if (currentQuestionID + 1 < quizLength) {
-        currentQuestionID = currentQuestionID + 1;
+    currentQuestionID = currentQuestionID + 1;
+    if (currentQuestionID < quizLength) {
+        
         loadQuestions(currentQuestionID);
     } else {
         console.log('No more questions');
@@ -95,5 +103,6 @@ buttonAnswer.addEventListener('click',  (e) => {
 
 
 window.addEventListener('load', () => {
+    setTime(initialTime);
     updateTime();
 });
