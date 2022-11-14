@@ -1,5 +1,11 @@
 //Initial Time
 var initialTime = 100;
+//Value to punish
+var timePunishment = 5;
+//scoreIncreate
+
+// Current questions answer
+var currentQuestionAnswer;
 //For the timer
 var currentTimer = document.getElementById('timer');
 //For the quiz 
@@ -22,8 +28,8 @@ function setTime(newTime) {
 }
 
 //This simplifies my life, so I can change between debugging on GitHub Pages and localhost. I just uncomment what I need
-//var url = 'http://127.0.0.1:5500/assets/data/data.json';
-var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
+var url = 'http://127.0.0.1:5500/assets/data/data.json';
+//var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
 
 //Global Variable pointing to the current question
 var currentQuestionID = 0;
@@ -41,7 +47,8 @@ function loadQuestions(currentQuestionID) {
         QB.innerText = json[currentQuestionID].B;
         QC.innerText = json[currentQuestionID].C;
         QD.innerText = json[currentQuestionID].D;
-    });
+        currentQuestionAnswer = json[currentQuestionID].CorrectAnswer;
+    }).catch();
 }
 
 function showQuestions() {
@@ -82,20 +89,30 @@ function getUserInputAnswer() {
         }
     }
 }
+
 //
 buttonAnswer.addEventListener('click',  (e) => {
     e.preventDefault();
     //Check if correct answer if not punish
     var inputAnswer = getUserInputAnswer();
-    console.log(`user Input: ${inputAnswer}`);
+    console.log(`user Input: ${inputAnswer} and the question correct answer is ${currentQuestionAnswer}`);
+    var feedback = document.getElementById('feedback');
+    if (inputAnswer === currentQuestionAnswer) {
+        feedback.innerText = 'Correct !!!';
+    } else {
+        feedback.innerText = 'Incorrect !!!';
+    }
     //Load the next question if there are any questions left
     //I need to add 1 to compensate for the fact that I have to add 1. 
     currentQuestionID = currentQuestionID + 1;
+    
     if (currentQuestionID < quizLength) {
-        
         loadQuestions(currentQuestionID);
     } else {
-        console.log('No more questions');
+        //End Game
+        console.log('No more questions. Resetting');
+        currentQuestionID = 0;
+        loadQuestions(currentQuestionID);
     }
     
     
