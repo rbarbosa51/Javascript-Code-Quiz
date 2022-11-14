@@ -1,11 +1,17 @@
+//Current Player Score
+var currentPlayerScore = 0;
 //Initial Time
 var initialTime = 100;
 //Value to punish
 var timePunishment = 5;
 //scoreIncreate
 
+//Timer Interval
+var timerInterval;
 // Current questions answer
 var currentQuestionAnswer;
+//Answer Feedback
+var feedback = document.getElementById('feedback');
 //For the timer
 var currentTimer = document.getElementById('timer');
 //For the quiz 
@@ -55,15 +61,20 @@ function showQuestions() {
     var qForm = document.querySelector('form');
     qForm.classList.remove('hidden');
 }
+function hideQuestions() {
+    var qForm = document.querySelector('form');
+    qForm.classList.add('hidden');
+}
 
 function startTimer() {
-    setInterval(() => {
+    timerInterval = setInterval(() => {
         var currentTime = currentTimer.dataset.time;
         if (currentTime > 0) {
             setTime(currentTime - 1);
             updateTime();
         } 
         else {
+            //Time runs out
             clearInterval();
         }
     }, 1000);
@@ -96,7 +107,7 @@ buttonAnswer.addEventListener('click',  (e) => {
     //Check if correct answer if not punish
     var inputAnswer = getUserInputAnswer();
     console.log(`user Input: ${inputAnswer} and the question correct answer is ${currentQuestionAnswer}`);
-    var feedback = document.getElementById('feedback');
+    
     if (inputAnswer === currentQuestionAnswer) {
         feedback.innerText = 'Correct !!!';
     } else {
@@ -113,6 +124,12 @@ buttonAnswer.addEventListener('click',  (e) => {
         console.log('No more questions. Resetting');
         currentQuestionID = 0;
         loadQuestions(currentQuestionID);
+        hideQuestions();
+        setTime(initialTime);
+        updateTime();
+        clearInterval(timerInterval);
+        feedback.innerText = '';
+        currentPlayerScore = 0;
     }
     
     
