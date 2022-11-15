@@ -6,7 +6,10 @@ var initialTime = 100;
 var timePunishment = 5;
 //scoreIncreate
 var correctScoreIncrease = 3;
-
+var user = {
+    name: "",
+    score: 0
+};
 //Timer Interval
 var timerInterval;
 // Current questions answer
@@ -43,8 +46,8 @@ function setTime(newTime) {
 }
 
 //This simplifies my life, so I can change between debugging on GitHub Pages and localhost. I just uncomment what I need
-//var url = 'http://127.0.0.1:5500/assets/data/data.json';
-var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
+var url = 'http://127.0.0.1:5500/assets/data/data.json';
+//var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
 
 //Global Variable pointing to the current question
 var currentQuestionID = 0;
@@ -121,7 +124,9 @@ function getUserInputAnswer() {
 enterScoreBtn.addEventListener('click', (e) => {
     e.preventDefault();
     console.log(userName.value);
-    localStorage.setItem("Name", userName.value);
+    //localStorage.setItem("Name", userName.value);
+    user.name = userName.value;
+    localStorage.setItem('User', JSON.stringify(user));
     formEnterScore.classList.add('hidden');
     showScoreDiv();
     
@@ -130,7 +135,8 @@ enterScoreBtn.addEventListener('click', (e) => {
 function inputUserScore() {
     var finalScore = document.getElementById('finalScore');
     finalScore.innerText = `The final score was: ${currentPlayerScore}`;
-    localStorage.setItem("Score", currentPlayerScore);
+    user.score = currentPlayerScore;
+    localStorage.setItem("User", JSON.stringify(user));
     var formEnterScore = document.getElementById('formEnterScore');
     formEnterScore.classList.remove('hidden');
     //showScoreDiv();
@@ -198,7 +204,9 @@ function showScoreDiv() {
     var highScore = document.getElementById('highScore');
     highScore.classList.remove('hidden');
     var storedValues = document.getElementById('storedValues');
-    storedValues.innerText = `Name: ${localStorage.getItem('Name')} and Score: ${localStorage.getItem('Score')}`;
+    var tempName =  JSON.parse(localStorage.getItem('User')).name;
+    var tempScore = JSON.parse(localStorage.getItem('User')).score;
+    storedValues.innerText = `Name: ${tempName} and Score: ${tempScore}`;
 }
 
 scoreShow.addEventListener('click', (e) => {
