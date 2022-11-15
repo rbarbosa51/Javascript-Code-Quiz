@@ -26,6 +26,13 @@ var QA = document.getElementById('QA');
 var QB = document.getElementById('QB');
 var QC = document.getElementById('QC');
 var QD = document.getElementById('QD');
+//Entering data
+var enterScoreBtn = document.getElementById('enterScoreBtn');
+var userName = document.getElementById('userName');
+
+//For the HighScore
+var scoreShow = document.getElementById('scoreShow');
+var scoreButton = document.getElementById('scoreButton');
 
 function updateTime() {
     var time = currentTimer.dataset.time;
@@ -36,8 +43,8 @@ function setTime(newTime) {
 }
 
 //This simplifies my life, so I can change between debugging on GitHub Pages and localhost. I just uncomment what I need
-//var url = 'http://127.0.0.1:5500/assets/data/data.json';
-var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
+var url = 'http://127.0.0.1:5500/assets/data/data.json';
+//var url = 'https://rbarbosa51.github.io/Javascript-Code-Quiz/assets/data/data.json';
 
 //Global Variable pointing to the current question
 var currentQuestionID = 0;
@@ -62,11 +69,11 @@ function loadQuestions(currentQuestionID) {
 }
 
 function showQuestions() {
-    var qForm = document.querySelector('form');
+    var qForm = document.getElementById('formQuiz');
     qForm.classList.remove('hidden');
 }
 function hideQuestions() {
-    var qForm = document.querySelector('form');
+    var qForm = document.getElementById('formQuiz');
     qForm.classList.add('hidden');
 }
 
@@ -80,6 +87,9 @@ function startTimer() {
         else {
             //Time runs out
             clearInterval();
+            inputUserScore();
+            showScoreDiv();
+            resettingGame();
         }
     }, 1000);
     
@@ -108,6 +118,37 @@ function getUserInputAnswer() {
     return answer;
 }
 
+enterScoreBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(userName.value);
+    localStorage.setItem("Name", userName.value);
+    formEnterScore.classList.add('hidden');
+    showScoreDiv();
+    
+});
+
+function inputUserScore() {
+    var finalScore = document.getElementById('finalScore');
+    finalScore.innerText = `The final score was: ${currentPlayerScore}`;
+    localStorage.setItem("Score", currentPlayerScore);
+    var formEnterScore = document.getElementById('formEnterScore');
+    formEnterScore.classList.remove('hidden');
+    //showScoreDiv();
+
+}
+
+function resettingGame() {
+    console.log('No more questions. Resetting');
+    currentQuestionID = 0;
+    loadQuestions(currentQuestionID);
+    hideQuestions();
+    setTime(initialTime);
+    updateTime();
+    clearInterval(timerInterval);
+    feedback.innerText = '';
+    currentPlayerScore = 0;
+    score.innerText = `Current Score is: ${currentPlayerScore}`;
+}
 //
 buttonAnswer.addEventListener('click',  (e) => {
     e.preventDefault();
@@ -138,17 +179,11 @@ buttonAnswer.addEventListener('click',  (e) => {
     if (currentQuestionID < quizLength) {
         loadQuestions(currentQuestionID);
     } else {
+        // Ask for user Name
+        inputUserScore();
+        //showScoreDiv();
         //End Game
-        console.log('No more questions. Resetting');
-        currentQuestionID = 0;
-        loadQuestions(currentQuestionID);
-        hideQuestions();
-        setTime(initialTime);
-        updateTime();
-        clearInterval(timerInterval);
-        feedback.innerText = '';
-        currentPlayerScore = 0;
-        score.innerText = `Current Score is: ${currentPlayerScore}`;
+        resettingGame();
     }
     
     
@@ -159,3 +194,22 @@ window.addEventListener('load', () => {
     setTime(initialTime);
     updateTime();
 });
+function showScoreDiv() {
+    var highScore = document.getElementById('highScore');
+    highScore.classList.remove('hidden');
+    var storedValues = document.getElementById('storedValues');
+    storedValues.innerText = `Name: ${localStorage.getItem('Name')} and Score: ${localStorage.getItem('Score')}`;
+}
+
+scoreShow.addEventListener('click', (e) => {
+    //e.preventDefault();
+    showScoreDiv();
+    
+
+});
+
+scoreButton.addEventListener('click', () => {
+    var highScore = document.getElementById('highScore');
+    highScore.classList.add('hidden');
+    console.log('scoreButton');
+})

@@ -12,9 +12,10 @@
     <h1 class="block">Javascript Quiz Game</h1>
     <h2>Instructions</h2>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil, neque qui esse id incidunt quia minus suscipit distinctio unde autem! Eaque voluptatum, asperiores natus excepturi dicta, labore dolor iusto sit, aperiam assumenda maiores fugiat voluptas. Explicabo minus, cumque modi quas tempore quos ullam quae! Dicta maiores similique nisi pariatur repellendus!</p>
-    <button id="buttonStart">Start Game</button>
+    <button id="buttonStart">Start Game</button> 
+    <button id="scoreShow">Show HighScore</button>
     
-    <form class="hidden">
+    <form id="formQuiz" class="hidden">
         <div>Timer</div>
         <div id="timer" data-time=""></div>
         <div id="score">Current Score is: 0</div>
@@ -28,7 +29,19 @@
         <hr>
         <p id="feedback"></p>
     </form>
-    
+
+    <form id="formEnterScore" class="hidden">
+        <hr>
+        <p id="finalScore"></p>
+        <label>Enter Your Name</label><input type="text" id="userName"><br>
+        <button id="enterScoreBtn">Enter Score</button>
+    </form>
+
+    <div id="highScore" class="hidden">
+        <h2>High Score</h2>
+        <div id="storedValues"></div>
+        <button id="scoreButton">Hide</button>
+    </div>
 
     <script src="assets/javascript/index.js"></script>
 </body>
