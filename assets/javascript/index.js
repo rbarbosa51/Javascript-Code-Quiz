@@ -92,6 +92,7 @@ function startTimer() {
             clearInterval();
             inputUserScore();
             showScoreDiv();
+            currentPlayerScore = 0;
             resettingGame();
         }
     }, 1000);
@@ -107,6 +108,8 @@ buttonStart.addEventListener('click', () => {
     loadQuestions(currentQuestionID);
     //Starts the timer
     startTimer();
+    currentPlayerScore = 0;
+    score.innerText = `Current Score is: ${currentPlayerScore}`;
 
 });
 function getUserInputAnswer() {
@@ -124,8 +127,8 @@ function getUserInputAnswer() {
 enterScoreBtn.addEventListener('click', (e) => {
     e.preventDefault();
     console.log(userName.value);
-    //localStorage.setItem("Name", userName.value);
     user.name = userName.value;
+    user.score = currentPlayerScore;
     localStorage.setItem('User', JSON.stringify(user));
     formEnterScore.classList.add('hidden');
     showScoreDiv();
@@ -135,12 +138,8 @@ enterScoreBtn.addEventListener('click', (e) => {
 function inputUserScore() {
     var finalScore = document.getElementById('finalScore');
     finalScore.innerText = `The final score was: ${currentPlayerScore}`;
-    user.score = currentPlayerScore;
-    localStorage.setItem("User", JSON.stringify(user));
     var formEnterScore = document.getElementById('formEnterScore');
     formEnterScore.classList.remove('hidden');
-    //showScoreDiv();
-
 }
 
 function resettingGame() {
@@ -152,8 +151,7 @@ function resettingGame() {
     updateTime();
     clearInterval(timerInterval);
     feedback.innerText = '';
-    currentPlayerScore = 0;
-    score.innerText = `Current Score is: ${currentPlayerScore}`;
+    //score.innerText = `Current Score is: ${currentPlayerScore}`;
 }
 //
 buttonAnswer.addEventListener('click',  (e) => {
