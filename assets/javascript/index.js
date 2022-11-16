@@ -139,6 +139,7 @@ enterScoreBtn.addEventListener('click', (e) => {
     user.score = currentPlayerScore;
     localStorage.setItem('User', JSON.stringify(user));
     formEnterScore.classList.add('hidden');
+    userName.value = '';
     showScoreDiv();
     
 });
