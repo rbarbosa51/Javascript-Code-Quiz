@@ -70,7 +70,7 @@ function loadQuestions(currentQuestionID) {
         console.log(`This is the error: ${e}`);
     });
 }
-
+//showQuestions and hideQuestions just hides the questions
 function showQuestions() {
     var qForm = document.getElementById('formQuiz');
     qForm.classList.remove('hidden');
@@ -80,6 +80,8 @@ function hideQuestions() {
     qForm.classList.add('hidden');
 }
 
+/*This function controls the timer. If a game ends because the timer ran out it needs to reset 
+just like it would have if the user answered all questions*/
 function startTimer() {
     timerInterval = setInterval(() => {
         var currentTime = currentTimer.dataset.time;
@@ -99,7 +101,7 @@ function startTimer() {
     
 }
 
-//This button starts the game
+//This button starts the game. It also calls the startTimer() function. It resets the user score.
 buttonStart.addEventListener('click', () => {
     console.log('Start Game');
     //This makes the form's display visible
@@ -112,6 +114,7 @@ buttonStart.addEventListener('click', () => {
     score.innerText = `Current Score is: ${currentPlayerScore}`;
 
 });
+//This function gets the selected radio button and returns the answer. It also unchecks the radio button.
 function getUserInputAnswer() {
     var radioSelect = document.querySelectorAll('input[name="radioSelect"]');
     var answer;
@@ -123,7 +126,7 @@ function getUserInputAnswer() {
     }
     return answer;
 }
-
+//When the button is clicked it stores the name and score to the localStorage.
 enterScoreBtn.addEventListener('click', (e) => {
     e.preventDefault();
     console.log(userName.value);
@@ -134,7 +137,7 @@ enterScoreBtn.addEventListener('click', (e) => {
     showScoreDiv();
     
 });
-
+//Makes the score component visible as well as set the game's final score
 function inputUserScore() {
     var finalScore = document.getElementById('finalScore');
     finalScore.innerText = `The final score was: ${currentPlayerScore}`;
@@ -142,6 +145,7 @@ function inputUserScore() {
     formEnterScore.classList.remove('hidden');
 }
 
+//This is needed to reset (recycle) the game. Allows continual play
 function resettingGame() {
     console.log('No more questions. Resetting');
     currentQuestionID = 0;
@@ -153,7 +157,9 @@ function resettingGame() {
     feedback.innerText = '';
     //score.innerText = `Current Score is: ${currentPlayerScore}`;
 }
-//
+
+/* In the questions form the button must be prevented from default. It also has to check if the user answer is correct.
+It punishes bad behavior*/
 buttonAnswer.addEventListener('click',  (e) => {
     e.preventDefault();
     //Check if correct answer if not punish
@@ -193,11 +199,12 @@ buttonAnswer.addEventListener('click',  (e) => {
     
 });
 
-
+//Once the window is loaded it sets the timer to the selected start time
 window.addEventListener('load', () => {
     setTime(initialTime);
     updateTime();
 });
+//This shows the highScore component
 function showScoreDiv() {
     var highScore = document.getElementById('highScore');
     highScore.classList.remove('hidden');
@@ -206,14 +213,13 @@ function showScoreDiv() {
     var tempScore = JSON.parse(localStorage.getItem('User')).score;
     storedValues.innerText = `Name: ${tempName} and Score: ${tempScore}`;
 }
-
-scoreShow.addEventListener('click', (e) => {
-    //e.preventDefault();
+//Makes the highScore component visible
+scoreShow.addEventListener('click', () => {
     showScoreDiv();
     
 
 });
-
+//Hides the highScore element
 scoreButton.addEventListener('click', () => {
     var highScore = document.getElementById('highScore');
     highScore.classList.add('hidden');
