@@ -9,54 +9,60 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     
 </head>
-<body>
+<body class="gray">
     <header class="container">
-        <h1 class="block">Javascript Quiz Game</h1>
-        <h2>Instructions</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil, neque qui esse id incidunt quia minus suscipit distinctio unde autem! Eaque voluptatum, asperiores natus excepturi dicta, labore dolor iusto sit, aperiam assumenda maiores fugiat voluptas. Explicabo minus, cumque modi quas tempore quos ullam quae! Dicta maiores similique nisi pariatur repellendus!</p>
+        <h1 class="block bg-white rounded shadow text-center">Javascript Quiz Game</h1>
+        <div class="bg-white rounded shadow px-4">
+            <h2>Instructions</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil, neque qui esse id incidunt quia minus suscipit distinctio unde autem! Eaque voluptatum, asperiores natus excepturi dicta, labore dolor iusto sit, aperiam assumenda maiores fugiat voluptas. Explicabo minus, cumque modi quas tempore quos ullam quae! Dicta maiores similique nisi pariatur repellendus!</p>
+        </div>
     </header>
     <nav class="container">
-        <button id="buttonStart">Start Game</button> 
-        <button id="scoreShow">Show HighScore</button>
+        <div class="bg-white rounded shadow px-4">
+            <button id="buttonStart">Start Game</button> 
+            <button id="scoreShow">Show HighScore</button>
+        </div>
     </nav>
-    
     <main class="container">
-        <form id="formQuiz" class="hidden">
-            <div>Timer</div>
-            <div id="timer" data-time=""></div>
-            <div id="score">Current Score is: 0</div>
-            <h2>Question <span id="questionID"></span></h2>
-            <p id="questionText">Test</p>
-            <input type="radio" id="A" name="radioSelect" value="A"><label for="A" id="QA">A</label><br>
-            <input type="radio" id="B" name="radioSelect" value="B"><label for="B" id="QB">B</label><br>
-            <input type="radio" id="C" name="radioSelect" value="C"><label for="C" id="QC">C</label><br>
-            <input type="radio" id="D" name="radioSelect" value="D"><label for="D" id="QD">D</label><br>
-            <button id="buttonSubmit">Answer</button>
-            <hr>
-            <p id="feedback"></p>
-        </form>
+        <div class="bg-white rounded shadow px-4 my-3">
+            <form id="formQuiz" class="hidden">
+                <div>Timer</div>
+                <div id="timer" data-time=""></div>
+                <div id="score">Current Score is: 0</div>
+                <h2>Question <span id="questionID"></span></h2>
+                <p id="questionText">Test</p>
+                <input type="radio" id="A" name="radioSelect" value="A"><label for="A" id="QA">A</label><br>
+                <input type="radio" id="B" name="radioSelect" value="B"><label for="B" id="QB">B</label><br>
+                <input type="radio" id="C" name="radioSelect" value="C"><label for="C" id="QC">C</label><br>
+                <input type="radio" id="D" name="radioSelect" value="D"><label for="D" id="QD">D</label><br>
+                <button id="buttonSubmit">Answer</button>
+                <hr>
+                <p id="feedback"></p>
+            </form>
+        </div>  
     </main>
-    
     <aside class="container">
-        <form id="formEnterScore" class="hidden">
-            <hr>
-            <h2 id="finalScore"></h2>
-            <label>Enter Your Name</label><input type="text" id="userName"><br>
-            <button id="enterScoreBtn">Enter Score</button>
-        </form>
+        <div class="bg-white rounded shadow px-4 my-3">
+            <form id="formEnterScore" class="hidden">
+                <hr>
+                <h2 id="finalScore"></h2>
+                <label>Enter Your Name</label><input type="text" id="userName"><br>
+                <button id="enterScoreBtn">Enter Score</button>
+            </form>
+        </div>
     </aside>
-   
     <aside class="container">
-        <div id="highScore" class="hidden">
-            <h2>High Score</h2>
-            <div id="storedValues">
-                <p id="player" data-score=""></p>
+        <div class="bg-white rounded shadow px-4 my-3">
+            <div id="highScore" class="hidden">
+                <h2>High Score</h2>
+                <div id="storedValues">
+                    <p id="player" data-score=""></p>
+                </div>
+                <button id="scoreButton">Hide</button>
             </div>
-            <button id="scoreButton">Hide</button>
         </div>
     </aside>
     
-
     <script src="assets/javascript/index.js"></script>
 </body>
 </html>
