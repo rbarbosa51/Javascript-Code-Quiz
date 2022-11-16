@@ -129,7 +129,12 @@ function getUserInputAnswer() {
 //When the button is clicked it stores the name and score to the localStorage.
 enterScoreBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log(userName.value);
+    //console.log(userName.value);
+    if (userName.value === '') {
+        console.log('Name field is Empty!!');
+        alert('Enter a name');
+        return;
+    }
     user.name = userName.value;
     user.score = currentPlayerScore;
     localStorage.setItem('User', JSON.stringify(user));
@@ -209,6 +214,12 @@ function showScoreDiv() {
     var highScore = document.getElementById('highScore');
     highScore.classList.remove('hidden');
     var storedValues = document.getElementById('storedValues');
+    /* This was a bug. Needed to check if there are any values on localStorage
+    othewise return   */
+    if (localStorage.length === 0) {
+        console.log('LocalStorage is Empty!');
+        return;
+    }
     var tempName =  JSON.parse(localStorage.getItem('User')).name;
     var tempScore = JSON.parse(localStorage.getItem('User')).score;
     storedValues.innerText = `Name: ${tempName} and Score: ${tempScore}`;
