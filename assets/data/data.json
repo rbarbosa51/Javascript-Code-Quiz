@@ -44,5 +44,51 @@
             "B": "terminal / bash",
             "C": "for loops",
             "D": "console.log"
+        },
+        {
+            "id": 5,
+            "Question": "Which of the following is correct about features of JavaScript?",
+            "CorrectAnswer": "C",
+            "A": "JavaScript is is complementary to and integrated with HTML.",
+            "B": "JavaScript is open and cross-platform.",
+            "C": "Both of the above.",
+            "D": "None of the above"
+        },
+        {
+            "id": 6,
+            "Question": "Which of the following type of variable takes precedence over other if names are same?",
+            "CorrectAnswer": "B",
+            "A": "global variable",
+            "B": "local variable",
+            "C": "Both of the above.",
+            "D": "None of the above"
+        },
+        {
+            "id": 7,
+            "Question": "Which built-in method returns the characters in a string beginning at the specified location?",
+            "CorrectAnswer": "A",
+            "A": "substr()",
+            "B": "getSubstring()",
+            "C": "slice()",
+            "D": "None of the above."
+        },
+        {
+            "id": 8,
+            "Question": "Which of the following function of String object executes the search for a match between a regular expression and a specified string?",
+            "CorrectAnswer": "D",
+            "A": "concat()",
+            "B": "match()",
+            "C": "replace()",
+            "D": "search()"
+        },
+        {
+            "id": 9,
+            "Question": "Which of the following function of String object returns the calling string value converted to upper case while respecting the current locale?",
+            "CorrectAnswer": "A",
+            "A": "toLocaleUpperCase()",
+            "B": "toUpperCase()",
+            "C": "toString()",
+            "D": "substring()"
         }
+        
 ]
