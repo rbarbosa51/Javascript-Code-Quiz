@@ -2,38 +2,47 @@
     [
         {
             "id": 0,
-            "Question": "What is ...",
-            "CorrectAnswer": "A",
-            "A": "This is the A Answer",
-            "B": "This is the B Answer",
-            "C": "This is the C Answer",
-            "D": "This is the D Answer"
+            "Question": "Commonly used data types DO NOT include:",
+            "CorrectAnswer": "C",
+            "A": "strings",
+            "B": "booleans",
+            "C": "alerts",
+            "D": "numbers"
         },
         {
             "id": 1,
-            "Question": "Second Question",
-            "CorrectAnswer": "B",
-            "A": "2 - This is the A Answer",
-            "B": "2 - This is the B Answer",
-            "C": "2 - This is the C Answer",
-            "D": "2 - This is the D Answer"
+            "Question": "The condition in an if / else statement is enclosed within ____.",
+            "CorrectAnswer": "C",
+            "A": "quotes",
+            "B": "curly brackets",
+            "C": "parentheses",
+            "D": "square brackets"
         },
         {
             "id": 2,
-            "Question": "Third Question",
-            "CorrectAnswer": "C",
-            "A": "3 - This is the A Answer",
-            "B": "3 - This is the B Answer",
-            "C": "3 - This is the C Answer",
-            "D": "3 - This is the D Answer"
+            "Question": "Arrays in JavaScript can be used to store ____.",
+            "CorrectAnswer": "D",
+            "A": "numbers and strings",
+            "B": "other arrays",
+            "C": "booleans",
+            "D": "all of the above"
         },
         {
             "id": 3,
-            "Question": "Forth Question",
+            "Question": "String values must be enclosed within ____ when being assigned to variables.",
+            "CorrectAnswer": "C",
+            "A": "commas",
+            "B": "curly brackets",
+            "C": "quotes",
+            "D": "parentheses"
+        },
+        {
+            "id": 4,
+            "Question": "A very useful tool used during development and debugging for printing content to the debugger is:",
             "CorrectAnswer": "D",
-            "A": "4 - This is the A Answer",
-            "B": "4 - This is the B Answer",
-            "C": "4 - This is the C Answer",
-            "D": "4 - This is the D Answer"
+            "A": "JavaScript",
+            "B": "terminal / bash",
+            "C": "for loops",
+            "D": "console.log"
         }
 ]
